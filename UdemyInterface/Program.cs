@@ -34,7 +34,12 @@ try
     int numberInstallments = readInstallments();
     ContractService contractService = new ContractService(new PaymentService());
     contractService.processContract(contract, numberInstallments);
-
+    Console.WriteLine("\nInstallments:");
+    foreach (Installment installment in contract.Installments)
+    {
+        Console.Write(installment.DueDate.ToString("dd/MM/yyyy") + " - $" + installment.Amount.ToString("F2", CultureInfo.InvariantCulture));
+        Console.WriteLine();
+    }
 }
 catch (Exception e)
 {
